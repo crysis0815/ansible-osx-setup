@@ -41,6 +41,7 @@ DNS resolver config?
 tailscale?
 asdf?
 
+softwareupdate für systemsoftware (s mas-link)
 installation apps aus Mac App Store und anderen Quellen TODO auflisten?
   https://github.com/mas-cli/mas, via homebrew installieren
 apps konfigurieren, gfs manuelle steps
