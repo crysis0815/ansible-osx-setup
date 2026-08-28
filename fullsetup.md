@@ -15,7 +15,7 @@ Before starting, I completed Apple's mandatory macOS setup wizard (creating a lo
 TODO: syncing iCloud Drive and wait for completion?
 Once on the macOS desktop, I do the following (in order):
 
-installation homebrew
+installation homebrew und configuration von homebrew
 install casks/packages (from Brewfile?)
 install dotfiles from git repo
 TODO: list files?, wie commit wenn änderungen?
@@ -33,8 +33,10 @@ DNS resolver config?
 tailscale?
 
 installation apps aus Mac App Store und anderen Quellen TODO auflisten?
+  https://github.com/mas-cli/mas, via homebrew installieren
 apps konfigurieren, gfs manuelle steps
 
+dockutil: add/remove Apps from/to the dock
 
 
 
