@@ -53,6 +53,18 @@ dann diese dateien (dir .git) unter versionsverwaltung plus autom. commits bei �
 systemeinstellungen (defaults write etc)
   shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults
   home/.osx, chmod +x ~/.osx
+https://github.com/olafhartong/osx-defaults/blob/master/.osx
+
+systemeinstellungen per CLI:
+* defaults write – die meisten App- und System-Prefs
+* systemsetup – Host, Timezone, Remote Login (braucht oft sudo)
+* osascript – System Settings, die kein defaults-Key haben
+* pmset, networksetup, scutil – Power, Netzwerk, Hostname
+* https://github.com/kevinSuttle/macOS-Defaults/blob/master/REFERENCE.md
+launchctl, mdutil for spotlight?, systemsetup, tmutil
+
+aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
+
 
 TODO: DNS resolver config?
 
@@ -145,7 +157,8 @@ TODO: dokumentieren
 
   - These things might be automatable, but I do them manually right now:
     - Configure Time Machine backup drive
-    - Install Wireguard VPN configurations (if needed)
+    - Install Wireguard VPN configurations (if needed
+
 
 ## To Wrap in Post-provision automation
 
@@ -169,4 +182,8 @@ curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathog
 cd ~/.vim/bundle
 git clone https://github.com/preservim/nerdtree.git
 ```
+## TODOs
 
+statt docker container: orbstack oder apple container und https://github.com/andrew-waters/orchard
+für radarr, sonarr, abnnzbd, jellyfin
+* autom. backup und restore. sowie build from source?
