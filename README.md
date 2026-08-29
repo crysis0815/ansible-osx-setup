@@ -22,12 +22,23 @@ TODO: syncing iCloud Drive and wait for completion?
 
 Once on the macOS desktop, I do the following (in order):
 
-There's a simple shell script in `bin/bootstrap` which will perform the initial steps of:
+Installing Xcode(?)
+xcode-select --install
 
-Installing Xcode
+# Install Homebrew from the official script in /opt/homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-installation homebrew und configuration von homebrew
-.bashrc/.zshrc ergänzen und sourcen
+configure homebrew, .bashrc bzw .zshrc ergänzen und sourcen
+...
+export PATH="/opt/homebrew/bin:$PATH"
+export HOMEBREW_VERIFY_ATTESTATIONS=1
+export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_QUIET=1
+export HOMEBREW_NO_ASK=1
+#export HOMEBREW_NO_ANALYTICS=1
+#export HOMEBREW_VERBOSE=1
+...
+
 
 install casks/packages (from Brewfile, incl. AppStore via https://github.com/mas-cli/mas)
 brew bundle with casks, taps, Mac App Store apps, WinGet packages on WSL, VS Code extensions, Go packages, Cargo packages, npm packages, uv tools, Flatpak packages and krew kubectl plugins and to start background services with brew services. https://docs.brew.sh/Brew-Bundle-and-Brewfile
