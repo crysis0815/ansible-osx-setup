@@ -1,34 +1,24 @@
-# Full Mac Setup Process
+# Mac Setup Process
 
-Recipe for erasing and setting up a mac.
-100% automation of this process isn't possible (not with Time Machine, nor with ASR, nor with Ansible), thus some manual steps are required. This document tries to cover that,
-
-![placeholder](non-transferable%20configuration.jpg)
-
-
-## When formatting old Mac
-
-  - Sign out of tailscale, any others too?
-  - Deauthorize Apple Music in iTunes/Music App
-  - Follow Apple's guide [here](https://support.apple.com/en-au/HT212749)
+Recipes for setting up a new mac aand erasing aa mac.
+100% automation is technically impossible, thus everything is documented here
 
 
 
-## Initial configuration of a brand new Mac
 
-Before starting, I completed Apple's mandatory macOS setup wizard (creating a local user account, signing into my iCloud account). 
-TODO: syncing iCloud Drive and wait for completion?
-**Sign in to App Store** (since `mas` can't sign in automatically)
-
-Once on the macOS desktop, I do the following (in order):
-
-Installing Xcode(?)
+## Setup Wizard
+1. complete the mandatory macOS setup wizard (creating a local user account, signing into my iCloud account)
+   **TODO describe steps?**
+2. sign in to AppStore (since `mas` can't sign in automatically)
+3. **TODO:** syncing iCloud Drive and wait for completion?
+4. installing Xcode(?)
 xcode-select --install
-
-# Install Homebrew from the official script in /opt/homebrew
+5. install homebrew from the official script to /opt/homebrew
+```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-configure homebrew, .bashrc bzw .zshrc ergänzen und sourcen
+```
+7. configure homebrew
+**TODO** .bashrc bzw .zshrc ergänzen und sourcen
 ```
 export PATH="/opt/homebrew/bin:$PATH"
 export HOMEBREW_VERIFY_ATTESTATIONS=1
@@ -194,3 +184,14 @@ curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathog
 cd ~/.vim/bundle
 git clone https://github.com/preservim/nerdtree.git
 ```
+
+## Erasing a Mac
+
+  - Sign out of tailscale
+  - Deauthorize Apple Music in iTunes/Music App
+  - **TODO: what else?**
+  - Follow Apple's guide [here](https://support.apple.com/en-au/HT212749)
+
+## Why 100% automation is impossible
+
+![placeholder](non-transferable%20configuration.jpg)
