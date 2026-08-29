@@ -183,8 +183,3 @@ curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathog
 cd ~/.vim/bundle
 git clone https://github.com/preservim/nerdtree.git
 ```
-## TODOs
-
-statt docker container: orbstack oder apple container und https://github.com/andrew-waters/orchard
-für radarr, sonarr, abnnzbd, jellyfin
-* autom. backup und restore. sowie build from source?
