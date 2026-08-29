@@ -54,6 +54,7 @@ systemeinstellungen (defaults write etc)
   shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults
   home/.osx, chmod +x ~/.osx
 https://github.com/olafhartong/osx-defaults/blob/master/.osx
+https://github.com/alberti42/macOS-config-manager (defaults backup/restore)
 
 systemeinstellungen per CLI:
 * defaults write – die meisten App- und System-Prefs
