@@ -29,7 +29,7 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 configure homebrew, .bashrc bzw .zshrc ergänzen und sourcen
-...
+```
 export PATH="/opt/homebrew/bin:$PATH"
 export HOMEBREW_VERIFY_ATTESTATIONS=1
 export HOMEBREW_NO_ENV_HINTS=1
@@ -37,7 +37,7 @@ export HOMEBREW_QUIET=1
 export HOMEBREW_NO_ASK=1
 #export HOMEBREW_NO_ANALYTICS=1
 #export HOMEBREW_VERBOSE=1
-...
+```
 
 
 install casks/packages (from Brewfile, incl. AppStore via https://github.com/mas-cli/mas)
