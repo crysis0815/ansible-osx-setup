@@ -3,6 +3,9 @@
 Recipe for erasing and setting up a mac.
 100% automation of this process isn't possible (not with Time Machine, nor with ASR, nor with Ansible), thus some manual steps are required. This document tries to cover that,
 
+![test 123](non-transferable configuration.jpg)
+<!-- ![description](https://github.com/user/repo/blob/main/images/my-image.png?raw=true) -->
+
 ## When formatting old Mac
 
   - Sign out of tailscale, any others too?
