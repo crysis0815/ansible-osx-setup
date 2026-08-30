@@ -12,14 +12,12 @@ xcode-select --install
 ```
 5. install homebrew (official script to /opt/homebrew)
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/i
+```
+7. amend .zprofile
+```
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
-echo >> /Users/lothar/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/lothar/.zprofile
-```
-7. amend .zshrc?
-```
-export PATH="/opt/homebrew/bin:$PATH"
 export HOMEBREW_VERIFY_ATTESTATIONS=1
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_QUIET=1
@@ -27,6 +25,18 @@ export HOMEBREW_NO_ASK=1
 #export HOMEBREW_NO_ANALYTICS=1
 #export HOMEBREW_VERBOSE=1
 ```
+
+install git (once without attestation as github auth is fragile and cumbersome at this stage)
+HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git
+
+
+gh auth login
+auth token wg github attestation API access
+HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git
+gh auth login, or
+HOMEBREW_GITHUB_API_TOKEN / GH_TOKEN
+
+TODO: dotfiles aus repo
 
 brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask font-iosevka-term-nerd-font
