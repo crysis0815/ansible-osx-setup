@@ -10,6 +10,23 @@ Recipes for setting up a new mac aand erasing aa mac. 100% automation is technic
 ```
 xcode-select --install
 ```
+4.5 configure ssh  
+**TODO: ssh_config**
+```
+# ssh-agent active?
+eval "$(ssh-agent -s)"
+# create github keys and add to keychain
+ssh-keygen -t ed25519 -C "lothar@TODO-hostname" -f ~/.ssh/id_ed25519_github
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519_github
+
+# add ssh key to clipboard and then paste via browser in github settings
+pbcopy < ~/.ssh/id_ed25519_github.pub
+GitHub → Settings → SSH and GPG keys → New SSH key → paste.
+
+# test
+ssh -T git@github.com
+git clone git@github.com:crysis0815/dotfiles.git
+```
 5. install homebrew (official script to /opt/homebrew)
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -50,6 +67,12 @@ clone dotfiles to the Mac: `git clone git@github.com:crysis0815/dotfiles.git`
 
 TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
 ```
+* synced across machines via git-dotfiles-repo for: public keys, ssh-config, known_hosts
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config
+chmod 600 ~/.ssh/id_*
+chmod 644 ~/.ssh/*.pub
+
 
 10.**TODO install all applications**  
 Applications can be installed with homebrew from the AppStore, brew (formulae and casks) or manually. The latter should be avoided whenever possible.  
@@ -87,6 +110,9 @@ aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverläss
 TODO: DNS resolver config?
 tailscale/netbird?, mullvad VPN?
 
+
+
+	
 
 ## Post-processing steps
 
