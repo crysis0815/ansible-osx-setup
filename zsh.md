@@ -19,3 +19,12 @@ Typical Terminal tab loads:
 4. /etc/zshrc
 5. ~/.zshrc
 Scripts (zsh script.zsh) usually read only .zshenv. They do not read .zshrc.
+
+
+| Shell type               | Reads .zprofile | Reads .zshrc |
+| ------------------------ | --- | --- |
+| Terminal.app / iTerm tab | yes | yes |
+| Interactive, not login (many IDE terminals) | no | yes |
+| Login, not interactive (some automation, zsh -l script) | yes | no |
+| Plain script | no | no |
+
