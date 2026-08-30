@@ -1,24 +1,23 @@
 # Mac Setup Process
-
-Recipes for setting up a new mac aand erasing aa mac.
-100% automation is technically impossible, thus everything is documented here
-
-
-
+Recipes for setting up a new mac aand erasing aa mac. 100% automation is technically impossible, thus everything is documented here
 
 ## Setup Wizard
 1. complete the mandatory macOS setup wizard (creating a local user account, signing into my iCloud account)
-   **TODO describe steps?**
+   **TODO describe all steps**
 2. sign in to AppStore (since `mas` can't sign in automatically)
-3. **TODO:** syncing iCloud Drive and wait for completion?
-4. installing Xcode(?)
+3. **TODO syncing iCloud Drive and wait for completion?**
+4. install Xcode commandline tools
+```
 xcode-select --install
-5. install homebrew from the official script to /opt/homebrew
+```
+5. install homebrew (official script to /opt/homebrew)
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo >> /Users/lothar/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/lothar/.zprofile
 ```
-7. configure homebrew
-**TODO** .bashrc bzw .zshrc ergänzen und sourcen
+7. amend .zshrc?
 ```
 export PATH="/opt/homebrew/bin:$PATH"
 export HOMEBREW_VERIFY_ATTESTATIONS=1
@@ -28,6 +27,18 @@ export HOMEBREW_NO_ASK=1
 #export HOMEBREW_NO_ANALYTICS=1
 #export HOMEBREW_VERBOSE=1
 ```
+
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-iosevka-term-nerd-font
+brew install --cask font-googlesanscode-nerd-font
+brew install starship
+
+add to end of .zshrc
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship.toml
+export STARSHIP_CACHE=~/.cache/starship/
+
+mkdir -p ~/.config && touch ~/.config/starship.toml
 
 
 install casks/packages (from Brewfile, incl. AppStore via https://github.com/mas-cli/mas)
