@@ -51,16 +51,16 @@ clone dotfiles to the Mac: `git clone git@github.com:crysis0815/dotfiles.git`
 TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
 ```
 
-10.**TODO install all applications**
+10.**TODO install all applications**  
 Applications can be installed with homebrew from the AppStore, brew (formulae and casks) or manually. The latter should be avoided whenever possible.  
-Automagically installable with homebrew[Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)  
+Automagically installable with homebrew: [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)  
 Some applications have to installed manually:  
 - Brave Browser
 - MakeMKV: dmg in MyShare-Software-Archive. As it is an unnotarized app, have to skip the Gatekeeper-Check (https://support.apple.com/en-us/102445)  
 - NewsLazer (https://newslazer.com/
 - Trezor Suite.app
 
-11. Postprocessing, add to Dock
+11. Postprocessing, add to Dock  
 dockutil: add/remove Apps from/to the dock  
 
 ## Systemeinstellungen (defaults write etc)
