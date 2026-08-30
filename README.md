@@ -26,7 +26,7 @@ HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 ```
 [user]
 	name = crysis0815
-	email = divers@capesso.de
+	email = microsoft@capesso.de
 [credential]
 	helper = osxkeychain
 [color]
@@ -45,38 +45,31 @@ Use HTTPS/Browser as ssh is not configured yet
 gh auth login
 ```
 9. install dotfiles from git repo
-	github: seite verlinken, komplette installierte software beschreiben und inhalt brewfile inkludieren
-	ggfs zusätzliches git repo mit gitcrypt
-
-	Clone dotfiles to the Mac: `git clone git@github.com:crysis0815/dotfiles.git`
-
-  	TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
-
-
-
-** TODO install all applications **
-Applications can be installed from the AppStore, brew (as formulae and casks) or manually. The latter should be avoided whenever possible.
-[Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)
-
-manual installation
 ```
-autoraise
-NewsLazer
-	https://newslazer.com/
-Trezor Suite.app
-Brave Browser
-MakeMKV 
-	dmg in MyShare-Software-Archive. As it is an unnotarized app, have to skip the Gatekeeper-Check (https://support.apple.com/en-us/102445)
+clone dotfiles to the Mac: `git clone git@github.com:crysis0815/dotfiles.git`
+
+TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
 ```
 
+10.**TODO install all applications**
+Applications can be installed with homebrew from the AppStore, brew (formulae and casks) or manually. The latter should be avoided whenever possible.  
+Automagically installable with homebrew[Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)  
+Some applications have to installed manually:  
+- Brave Browser
+- MakeMKV: dmg in MyShare-Software-Archive. As it is an unnotarized app, have to skip the Gatekeeper-Check (https://support.apple.com/en-us/102445)  
+- NewsLazer (https://newslazer.com/
+- Trezor Suite.app
 
+11. Postprocessing, add to Dock
+dockutil: add/remove Apps from/to the dock  
 
-
-systemeinstellungen (defaults write etc)
-  shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults
-  home/.osx, chmod +x ~/.osx
-https://github.com/olafhartong/osx-defaults/blob/master/.osx
-https://github.com/alberti42/macOS-config-manager (defaults backup/restore)
+## Systemeinstellungen (defaults write etc)
+shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults  
+```
+home/.osx, chmod +x ~/.osx
+```
+https://github.com/olafhartong/osx-defaults/blob/master/.osx  
+https://github.com/alberti42/macOS-config-manager (defaults backup/restore)  
 
 systemeinstellungen per CLI:
 * defaults write – die meisten App- und System-Prefs
@@ -84,22 +77,18 @@ systemeinstellungen per CLI:
 * osascript – System Settings, die kein defaults-Key haben
 * pmset, networksetup, scutil – Power, Netzwerk, Hostname
 * https://github.com/kevinSuttle/macOS-Defaults/blob/master/REFERENCE.md
-launchctl, mdutil for spotlight?, systemsetup, tmutil
+* launchctl, mdutil for spotlight?, systemsetup, tmutil
+
+* softwareupdate für systemsoftware (man softwareupdate; evtl skripten?)  
 
 aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
 
 
 TODO: DNS resolver config?
-
-softwareupdate für systemsoftware (man softwareupdate; evtl skripten?)
-
-dockutil: add/remove Apps from/to the dock
-
-
 tailscale/netbird?, mullvad VPN?
 
 
-
+## Post-processing steps
 
   - Start Synchronization tasks:
     - Open Photos and make sure iCloud sync options are correct TODO
