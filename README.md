@@ -18,48 +18,56 @@ echo >> /Users/lothar/.zprofile
 echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/lothar/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ```
-6. install git (once without attestation as github auth is fragile and cumbersome at this stage)
+6. install git
 ```
-HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git
+HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 ```
-
-
+7. configure git
+```
+[user]
+	name = crysis0815
+	email = divers@capesso.de
+[credential]
+	helper = osxkeychain
+[color]
+	ui = true
+[alias]
+	ll = log --oneline --graph --decorate --all
+	l = log --oneline --decorate
+[format]
+	pretty = oneline
+[core]
+	excludesfile = /Users/lothar/.gitignore_global
+```
+8. authenticate in github (nexessary for brew remote attestation API access)
+Use HTTPS/Browser as ssh is not configured yet
+```
 gh auth login
+```
+9. install dotfiles from git repo
+	github: seite verlinken, komplette installierte software beschreiben und inhalt brewfile inkludieren
+	ggfs zusätzliches git repo mit gitcrypt
 
-install dotfiles from git repo
-  Clone dotfiles to the Mac: `git clone git@github.com:geerlingguy/mac-dev-playbook.git`
-dotfiles_files:
-  - .zshrc + https://starship.rs/ (.zprofile?)
-  - .gitignore, .gitignore_global
-  - .inputrc
-  - .vimrc, .viminfo
-  - directory .gnupg
-  - directory .ssh
-  - directory .config (?)
-  - .bash_profile und .bashrc (legacy), .profile
-dann diese dateien (dir .git) unter versionsverwaltung plus autom. commits bei änderungen/daily
+	Clone dotfiles to the Mac: `git clone git@github.com:crysis0815/dotfiles.git`
+
+  	TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
 
 
-TODO: dotfiles aus repo
 
-brew install --cask font-jetbrains-mono-nerd-font
-brew install --cask font-iosevka-term-nerd-font
-brew install --cask font-googlesanscode-nerd-font
-brew install starship
+** TODO install all applications **
+Applications can be installed from the AppStore, brew (as formulae and casks) or manually. The latter should be avoided whenever possible.
+[Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)
 
-add to end of .zshrc
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship.toml
-export STARSHIP_CACHE=~/.cache/starship/
-
-mkdir -p ~/.config && touch ~/.config/starship.toml
-
-
-install casks/packages (from Brewfile, incl. AppStore via https://github.com/mas-cli/mas)
-brew bundle with casks, taps, Mac App Store apps, WinGet packages on WSL, VS Code extensions, Go packages, Cargo packages, npm packages, uv tools, Flatpak packages and krew kubectl plugins and to start background services with brew services. https://docs.brew.sh/Brew-Bundle-and-Brewfile
-TODO: regelmässige sicherung der installierten apps incl. AppStore mit 
-brew bundle dump --mas
-
+manual installation
+```
+autoraise
+NewsLazer
+	https://newslazer.com/
+Trezor Suite.app
+Brave Browser
+MakeMKV 
+	dmg in MyShare-Software-Archive. As it is an unnotarized app, have to skip the Gatekeeper-Check (https://support.apple.com/en-us/102445)
+```
 
 
 
@@ -90,60 +98,7 @@ dockutil: add/remove Apps from/to the dock
 
 tailscale/netbird?, mullvad VPN?
 
-standard-OS-apps nicht aufgeführt?
 
-1Password.app
-AusweisApp.app
-AutoRaise.app
-BBEdit.app besser Zed?
---BetterDisplay
-BitBox
---Blackmagic Disk Speed Test
-BraveBrowser.app (statt Chrome?)
-Breitbandmessung
-Canon Utilities (Drucker + Scanner?)
-Developer.app
---Discovery
-DriveDX
-Freeform
-GarageBand.app
-Gemini.app
---Google Chrome
-HandBrake.app
-IINA.app
-iMovie.app
-Infuse.app
-iTerm.app
-JetBrains Toolbox.app
-Keynote Creator Studio.app
---Kindle
---KnockKnock
---LaunchControl.app
---Lingon X
-MacFamilyTree 11.app
-MacWhisper (aus Gumroad)
---Magnet
-MakeMKV (TODO: dvdcss braucht man noch)
---NewsLazer
-Numbers Creator Studio.app
-Pages Creator Studio.app
---Passwörter
-PDF Expert.app
-Pixelmator Pro.app
---Safari.app
-Tailscale.app
---Telegram.app
-Time Machine
-TradingView.app
-Trezor Suite.app
-TV
---UTM
-VLC
-Weasis.app
-WhatsApp.app
-Whisper Transcription.app
-Xcode.app
-Zed.app
 
 
   - Start Synchronization tasks:
