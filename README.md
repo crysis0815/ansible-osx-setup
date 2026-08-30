@@ -27,14 +27,25 @@ export HOMEBREW_NO_ASK=1
 ```
 
 install git (once without attestation as github auth is fragile and cumbersome at this stage)
+```
 HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git
-
+```
 
 gh auth login
-auth token wg github attestation API access
-HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git
-gh auth login, or
-HOMEBREW_GITHUB_API_TOKEN / GH_TOKEN
+
+install dotfiles from git repo
+  Clone dotfiles to the Mac: `git clone git@github.com:geerlingguy/mac-dev-playbook.git`
+dotfiles_files:
+  - .zshrc + https://starship.rs/ (.zprofile?)
+  - .gitignore, .gitignore_global
+  - .inputrc
+  - .vimrc, .viminfo
+  - directory .gnupg
+  - directory .ssh
+  - directory .config (?)
+  - .bash_profile und .bashrc (legacy), .profile
+dann diese dateien (dir .git) unter versionsverwaltung plus autom. commits bei änderungen/daily
+
 
 TODO: dotfiles aus repo
 
@@ -56,21 +67,9 @@ brew bundle with casks, taps, Mac App Store apps, WinGet packages on WSL, VS Cod
 TODO: regelmässige sicherung der installierten apps incl. AppStore mit 
 brew bundle dump --mas
 
-install git (=Brewfile)
 
 
-install dotfiles from git repo
-  Clone dotfiles to the Mac: `git clone git@github.com:geerlingguy/mac-dev-playbook.git`
-dotfiles_files:
-  - .zshrc + https://starship.rs/ (.zprofile?)
-  - .gitignore, .gitignore_global
-  - .inputrc
-  - .vimrc, .viminfo
-  - directory .gnupg
-  - directory .ssh
-  - directory .config (?)
-  - .bash_profile und .bashrc (legacy), .profile
-dann diese dateien (dir .git) unter versionsverwaltung plus autom. commits bei änderungen/daily
+
 
 systemeinstellungen (defaults write etc)
   shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults
