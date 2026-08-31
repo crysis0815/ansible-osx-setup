@@ -40,9 +40,7 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ```
 
 ### 3.  configure ssh
-
-copy ~/.ssh/config **TODO: inhalt oder datei in repo und verlinken?**
-and set the correct permissions
+copy [ssh_config.md](ssh_config.md) to ~/.ssh/config and set the correct permissions
 ```
 chmod 600 ~/.ssh/config
 ```
