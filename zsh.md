@@ -1,30 +1,41 @@
 # zshell basics
 
-Rule of thumb: 
-- if a non-interactive command should still see it, it is environment → .zprofile. 
-- if it only matters while you type, it is interactive → .zshrc.
-  
-
-| File        | When it runs | Put here |
-| ----------- | ----------- | ----------- |
-| ~/.zprofile | Login shells       | "Environment: PATH, Homebrew, EDITOR, language runtimes" |
-| ~/.zshrc    | Interactive shells | "Aliases, prompt, completions, setopt, keybindings, plugins" |
-| ~/.zshenv   | Interactive shells | "Only tiny, silent env vars. Not PATH on macOS" |
+1. .zshenv - Always loaded first, for every ZSH invocation (interactive, non-interactive, login, non-login)
+1. .zprofile - Loaded for login shells only (when you first open Terminal or SSH into a machine)
+1. .zshrc - Loaded for interactive shells (when you can type commands)
 
 
-Typical Terminal tab loads:
+**Load order (here interactive and login):**
 1. ~/.zshenv
 2. /etc/zprofile → macOS path_helper rebuilds PATH
 3. ~/.zprofile
 4. /etc/zshrc
 5. ~/.zshrc
-Scripts (zsh script.zsh) usually read only .zshenv. They do not read .zshrc.
+   
+
+| Shell type                                             | Reads .zprofile | Reads .zshrc |
+| ------------------------                               | ---               | --- |
+| Interactive and login (Terminal.app / iTerm tab)        | yes               | yes |
+| Interactive, not login (many IDE terminals)            | no               | yes |
+| Login, not interactive (some automation, zsh -l script) | yes             | no |
+| Plain script                                            | no               | no |
 
 
-| Shell type               | Reads .zprofile | Reads .zshrc |
-| ------------------------ | --- | --- |
-| Terminal.app / iTerm tab | yes | yes |
-| Interactive, not login (many IDE terminals) | no | yes |
-| Login, not interactive (some automation, zsh -l script) | yes | no |
-| Plain script | no | no |
+## What to put where
+The best .zprofile contains only global environment variables and login-specific initialization that should run once per session
+
+**Rule of thumb:**
+- if a non-interactive command should still see it, it is environment => .zprofile. 
+- if it only matters while you type, it is interactive => .zshrc.
+  
+
+| File        | When it runs | Put here |
+| ----------- | ----------- | ----------- |
+| ~/.zshenv   | Interactive shells | only tiny, silent env vars. Not PATH on macOS |
+| ~/.zprofile | Login shells       | PATH (homebrew, SDKs,...), global environment variables (LANG, EDITOR, XDG directories) and login-specific initialization |
+| ~/.zshrc    | Interactive shells | aliases, prompt, completions, setopt, keybindings, plugins |
+
+
+
+
 
