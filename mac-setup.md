@@ -40,7 +40,7 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ```
 
 ### 3.  configure ssh
-copy (ssh_config) to ~/.ssh/config and set the correct permissions
+copy [ssh_config](ssh_config) to ~/.ssh/config and set the correct permissions
 ```
 chmod 600 ~/.ssh/config
 ```
