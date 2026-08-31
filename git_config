@@ -1,0 +1,14 @@
+[user]
+	name = crysis0815
+	email = microsoft@capesso.de
+[credential]
+	helper = osxkeychain
+[color]
+	ui = true
+[alias]
+	ll = log --oneline --graph --decorate --all
+	l = log --oneline --decorate
+[format]
+	pretty = oneline
+[core]
+	excludesfile = ~/.gitignore_global
