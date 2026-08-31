@@ -47,7 +47,6 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 ### 3.  configure ssh
 
-copy [ssh_config](ssh_config) to ~/.ssh/config and set the correct permissions  
 copy the [ssh configuration file](https://github.com/crysis0815/dotfiles/blob/master/.ssh/config)  to ~/.ssh/config and set the correct permissions
 ```
 chmod 600 ~/.ssh/config
@@ -99,11 +98,7 @@ sourcen?
 ```
 git clone git@github.com:crysis0815/dotfiles.git
 ```
-* synced across machines via git-dotfiles-repo for: public keys, ssh-config, known_hosts
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/config
-chmod 600 ~/.ssh/id_*
-chmod 644 ~/.ssh/*.pub
+
 
 
 ## install applications
@@ -118,8 +113,6 @@ Some applications have to installed manually:
 - Trezor Suite (https://trezor.io/de/trezor-suite)
 
 **TODO: describe manual steps?**  
-
-**TODO tailscale/netbird?, mullvad VPN?**
 
 
 check if there are updates available
@@ -171,7 +164,10 @@ TODO: DNS resolver config?
 
 4. **TODO: add relevant files to dotfiles repo and update these guides**
 
-
-- Open Calendar and enable personal Google CalDAV account (you have to manually sign in).
+* sync across machines via git-dotfiles-repo for: public keys?
+pen Calendar and enable personal Google CalDAV account (you have to manually sign in).
 - Configure Time Machine backup drive
 
+setup sync/backup wesentlicher dateien zwischen den rechnern, git repo?
+
+**TODO tailscale/netbird?, mullvad VPN?**
