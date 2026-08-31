@@ -75,10 +75,8 @@ install git and gh (github-cli)
 HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 ```
 
-copy [git_config](git_config) to ~/.gitconfig and set the correct permissions  
-**TODO: evtl. direkter link zu dotfile mit endgültiger version?**
+copy the [git configuration file](https://github.com/crysis0815/dotfiles/blob/master/.gitconfig)  to ~/.gitconfig and set the correct permissions
 ```
-mv git_config ~/.gitconfig
 chmod 644 ~/.gitconfig
 ```
 
