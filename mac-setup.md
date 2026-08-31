@@ -42,6 +42,7 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ### 3.  configure ssh
 copy [ssh_config](ssh_config) to ~/.ssh/config and set the correct permissions
 ```
+mv ssh_config ~/.ssh/config
 chmod 600 ~/.ssh/config
 ```
 
@@ -65,23 +66,10 @@ install git and gh (github-cli)
 HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 ```
 
-create ~/.gitconfig **TODO: link**
-chmod 0644  ~/.gitconfig
+copy [git_config](git_config) to ~/.gitconfig and set the correct permissions
 ```
-[user]
-	name = crysis0815
-	email = microsoft@capesso.de
-[credential]
-	helper = osxkeychain
-[color]
-	ui = true
-[alias]
-	ll = log --oneline --graph --decorate --all
-	l = log --oneline --decorate
-[format]
-	pretty = oneline
-[core]
-	excludesfile = ~/.gitignore_global
+mv git_config ~/.gitconfig
+chmod 644 ~/.gitconfig
 ```
 
 
