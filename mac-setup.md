@@ -1,4 +1,13 @@
-Setup a new mac
+# Guide for a new Mac
+
+Mac with fresh OS, follow these steps in order:  
+
+1. Complete Setup Wizard [Link Text](#setup-wizard)
+2. Sign into App Store plus AppleID?
+3. Preparations (xcode-cli, ssh, git)
+4. dotfiles
+5. **TODO**
+
 
 ## Setup Wizard
 1. complete the mandatory macOS setup wizard (creating a local user account, signing into my iCloud account)
@@ -174,6 +183,4 @@ git clone https://github.com/preservim/nerdtree.git
   - **TODO: what else?**
   - Follow Apple's guide [here](https://support.apple.com/en-au/HT212749)
 
-## Why 100% automation is impossible
 
-![placeholder](non-transferable%20configuration.jpg)
