@@ -2,11 +2,14 @@
 
 Mac with fresh OS, follow these steps in order:  
 
-1. Complete Setup Wizard [Link Text](#setup-wizard)
-2. Sign into App Store plus AppleID?
-3. Preparations (xcode-cli, ssh, git)
-4. dotfiles
-5. **TODO**
+1. [Setup Wizard](#setup-wizard)
+1. [AppleID](#appleid)
+1. [Preparations](#preparations) (xcode-cli, homebrew, ssh, git)
+1. [dotfiles](#install-dotfiles) 
+1. [Applications](#install-applications) 
+1. [Post-processing](#post-processing) 
+1. [Finishing steps](#finishing-steps) 
+
 
 
 ## Setup Wizard
@@ -21,11 +24,13 @@ sign in to AppleID and AppStore (since `mas` can't sign in automatically)
 
 ## Preparations
 
+
 ### 1. install Xcode commandline tools
 
 ```
 xcode-select --install
 ```
+
 
 ### 2. install and configure homebrew
 
@@ -39,17 +44,21 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ```
 
+
 ### 3.  configure ssh
-copy [ssh_config](ssh_config) to ~/.ssh/config and set the correct permissions
+
+copy [ssh_config](ssh_config) to ~/.ssh/config and set the correct permissions  
+**TODO: evtl. direkter link zu dotfile mit endgültiger version?**
 ```
 mv ssh_config ~/.ssh/config
 chmod 600 ~/.ssh/config
 ```
 
-create a github-specific ssh key and add it in github to allow access to repo with additional stuff to install. Replace **TODO** in the below code with the hostname of the machine we set up
+create a github-specific ssh key and add it in github to allow access to repo with additional stuff to install. Replace **TODO** with the hostname of the machine we try to set up.
 ```
 # ssh-agent active?
 eval "$(ssh-agent -s)"
+
 # create github keys and add to keychain
 ssh-keygen -t ed25519 -C "lothar@TODO" -f ~/.ssh/id_ed25519_github
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519_github
@@ -66,51 +75,73 @@ install git and gh (github-cli)
 HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 ```
 
-copy [git_config](git_config) to ~/.gitconfig and set the correct permissions
+copy [git_config](git_config) to ~/.gitconfig and set the correct permissions  
+**TODO: evtl. direkter link zu dotfile mit endgültiger version?**
 ```
 mv git_config ~/.gitconfig
 chmod 644 ~/.gitconfig
 ```
 
 
+## install dotfiles
 
-### 5. install dotfiles from git repo
-
-authenticate in github ()
-Use HTTPS/Browser
-necessary for brew remote attestation API access later on
+authenticate in github (use HTTPS/Browser); github ssh/API access is required for repo access and homebrew remote attestation
 ```
 gh auth login
 ```
 
-test if the github ssh access is working
+test if access is working
 ```
 ssh -T git@github.com
 ```
 
-clone dotfiles to the Mac  
-TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
+clone dotfiles and execute script to install  
+**TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?) **
+**TODO: evtl. direkter link zu dotfile mit endgültiger version?**  
+sourcen?
 ```
 git clone git@github.com:crysis0815/dotfiles.git
 ```
+* synced across machines via git-dotfiles-repo for: public keys, ssh-config, known_hosts
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config
+chmod 600 ~/.ssh/id_*
+chmod 644 ~/.ssh/*.pub
 
 
+## install applications
 
+homebrew can install applications from many sources. We use it to install formulae and casks from homebrew and, using mas, directly from the App Store.  
+List of all applications installed this way: [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)  
 
-
-10.**TODO install all applications**  
-Applications can be installed with homebrew from the AppStore, brew (formulae and casks) or manually. The latter should be avoided whenever possible.  
-Automagically installable with homebrew: [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)  
-Some applications have to installed manually:  
+Some applications have to installed manually:
 - Brave Browser
-- MakeMKV: dmg in MyShare-Software-Archive. As it is an unnotarized app, have to skip the Gatekeeper-Check (https://support.apple.com/en-us/102445)  
-- NewsLazer (https://newslazer.com/
-- Trezor Suite.app
+- MakeMKV: as unnotarized app we have to manually approve it to skip the Gatekeeper-Check (https://support.apple.com/en-us/102445) . The dmg can be found in MyShare-Software-Archive or on (https://www.makemkv.com/)
+- NewsLazer (https://newslazer.com/)
+- Trezor Suite (https://trezor.io/de/trezor-suite)
 
-11. Postprocessing, add to Dock  
+**TODO: describe manual steps?**  
+
+**TODO tailscale/netbird?, mullvad VPN?**
+
+
+check if there are updates available
+```
+softwareupdate --list
+
+brew update
+brew upgrade
+```
+
+
+## Post-processing
+
 dockutil: add/remove Apps from/to the dock  
 
-## Systemeinstellungen (defaults write etc)
+
+aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
+
+Systemeinstellungen (defaults write etc)
 shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults  
 ```
 home/.osx, chmod +x ~/.osx
@@ -126,50 +157,22 @@ systemeinstellungen per CLI:
 * https://github.com/kevinSuttle/macOS-Defaults/blob/master/REFERENCE.md
 * launchctl, mdutil for spotlight?, systemsetup, tmutil
 
-* softwareupdate für systemsoftware (man softwareupdate; evtl skripten?)  
-
-aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
-
-
 TODO: DNS resolver config?
-tailscale/netbird?, mullvad VPN?
 
 
+## Finishing steps
 
-	
+1. start syncing
 
-## Post-processing steps
+2. configure apps
+- open Photos and make sure iCloud sync options are correct TODO
+- open Music, make sure computer is authorized, and set Library sync options TODO
+- **TODO document manual steps to configure every apps**
 
-  - Start Synchronization tasks:
-    - Open Photos and make sure iCloud sync options are correct TODO
-    - Open Music, make sure computer is authorized, and set Library sync options TODO
-    - else?
+3. verify functioning of every app  
+**TODO: what to to for every app to verify it works correctly. what can be automazed?**
 
-apps konfigurieren, gfs manuelle steps, funktionsfähigkeit prüfen (ggfs. skriptbar?)
-TODO: dokumentieren
 
-  - Open Calendar and enable personal Google CalDAV account (you have to manually sign in).
-  - Manually copy `~/Development` folder from another Mac (to save time).
-  - Manual settings to automate someday:
-    - Finder:
-      - Disable click-to-show Desktop: `defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false`
-    - System Preferences:
-      - Accessibility > Display > Reduce transparency
-      - Keyboard > Keyboard Shortcuts... > Modifier Keys... > Caps Lock to Esc
-      - Keyboard > Key repeat rate to 'Fast', Delay until repeat to 'Short'
-      - Privacy & Security > Full Disk Access > enable "Terminal"
-    - Safari:
-      - View > Show Status Bar
-      - Preferences > Advanced > "Show full website address"
-      - Preferences > Advanced > "Show features for web developers"
-      - Install the 'Return YouTube Dislike' Userscript in Userscripts
+- Open Calendar and enable personal Google CalDAV account (you have to manually sign in).
+- Configure Time Machine backup drive
 
-  - These things might be automatable, but I do them manually right now:
-    - Configure Time Machine backup drive
-    - Install Wireguard VPN configurations (if needed
-
-* synced across machines via git-dotfiles-repo for: public keys, ssh-config, known_hosts
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/config
-chmod 600 ~/.ssh/id_*
-chmod 644 ~/.ssh/*.pub
