@@ -10,44 +10,65 @@ Mac with fresh OS, follow these steps in order:
 
 
 ## Setup Wizard
-1. complete the mandatory macOS setup wizard (creating a local user account, signing into my iCloud account)
+complete the mandatory macOS setup wizard (creating a local user account, signing into my iCloud account)
    **TODO describe all steps**
-2. sign in to AppStore (since `mas` can't sign in automatically)
-3. **TODO syncing iCloud Drive and wait for completion?**
-4. install Xcode commandline tools
+
+
+## AppleID
+sign in to AppleID and AppStore (since `mas` can't sign in automatically)
+**TODO syncing iCloud Drive and wait for completion?**
+
+
+## Preparations
+
+### 1. install Xcode commandline tools
+
 ```
 xcode-select --install
 ```
-4.5 configure ssh  
-**TODO: ssh_config**
+
+### 2. install and configure homebrew
+
+call the official script to install homebrew in /opt/homebrew with minimal setup for now
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo >> ~/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+```
+
+### 3.  configure ssh
+
+copy ~/.ssh/config **TODO: inhalt oder datei in repo und verlinken?**
+and set the correct permissions
+```
+chmod 600 ~/.ssh/config
+```
+
+create a github-specific ssh key and add it in github to allow access to repo with additional stuff to install. Replace **TODO** in the below code with the hostname of the machine we set up
 ```
 # ssh-agent active?
 eval "$(ssh-agent -s)"
 # create github keys and add to keychain
-ssh-keygen -t ed25519 -C "lothar@TODO-hostname" -f ~/.ssh/id_ed25519_github
+ssh-keygen -t ed25519 -C "lothar@TODO" -f ~/.ssh/id_ed25519_github
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519_github
 
-# add ssh key to clipboard and then paste via browser in github settings
+# copy ssh key to clipboard and with the browser save the key in github settings (GitHub → Settings → SSH and GPG keys → New SSH key → paste)
 pbcopy < ~/.ssh/id_ed25519_github.pub
-GitHub → Settings → SSH and GPG keys → New SSH key → paste.
+```
 
-# test
-ssh -T git@github.com
-git clone git@github.com:crysis0815/dotfiles.git
-```
-5. install homebrew (official script to /opt/homebrew)
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo >> /Users/lothar/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/lothar/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv zsh)"
-```
-6. install git
+### 4. install and configure git
+
+install git and gh (github-cli)
 ```
 HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 ```
-7. configure git
+
+create ~/.gitconfig **TODO: link**
+chmod 0644  ~/.gitconfig
 ```
 [user]
 	name = crysis0815
@@ -62,24 +83,33 @@ HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 [format]
 	pretty = oneline
 [core]
-	excludesfile = /Users/lothar/.gitignore_global
+	excludesfile = ~/.gitignore_global
 ```
-8. authenticate in github (nexessary for brew remote attestation API access)
-Use HTTPS/Browser as ssh is not configured yet
+
+
+
+### 5. install dotfiles from git repo
+
+authenticate in github ()
+Use HTTPS/Browser
+necessary for brew remote attestation API access later on
 ```
 gh auth login
 ```
-9. install dotfiles from git repo
-```
-clone dotfiles to the Mac: `git clone git@github.com:crysis0815/dotfiles.git`
 
+test if the github ssh access is working
+```
+ssh -T git@github.com
+```
+
+clone dotfiles to the Mac  
 TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?)
 ```
-* synced across machines via git-dotfiles-repo for: public keys, ssh-config, known_hosts
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/config
-chmod 600 ~/.ssh/id_*
-chmod 644 ~/.ssh/*.pub
+git clone git@github.com:crysis0815/dotfiles.git
+```
+
+
+
 
 
 10.**TODO install all applications**  
@@ -152,35 +182,8 @@ TODO: dokumentieren
     - Configure Time Machine backup drive
     - Install Wireguard VPN configurations (if needed
 
-
-## To Wrap in Post-provision automation
-
-The following tasks have to wait for the initial Dropbox sync to complete before they'll succeed. So ideally I'll stick this all in a post-provision script but somehow flag it not to run on first provision.
-
-```
-# ZSH Aliases.
-ln -s /Users/jgeerling/Dropbox/Apps/Config/.aliases /Users/jgeerling/.aliases
-
-# SSH setup.
-ssh-keygen  # and create a default key to set up .ssh folder
-sudo ln -s /Users/jgeerling/Dropbox/Apps/Config/ssh/config ~/.ssh/config
-# TODO - Manually copy any shared SSH keys that are needed.
-
-
-# Vim setup.
-mkdir -p ~/.vim/autoload
-mkdir -p ~/.vim/bundle
-cd ~/.vim/autoload
-curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim > pathogen.vim
-cd ~/.vim/bundle
-git clone https://github.com/preservim/nerdtree.git
-```
-
-## Erasing a Mac
-
-  - Sign out of tailscale
-  - Deauthorize Apple Music in iTunes/Music App
-  - **TODO: what else?**
-  - Follow Apple's guide [here](https://support.apple.com/en-au/HT212749)
-
-
+* synced across machines via git-dotfiles-repo for: public keys, ssh-config, known_hosts
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config
+chmod 600 ~/.ssh/id_*
+chmod 644 ~/.ssh/*.pub
