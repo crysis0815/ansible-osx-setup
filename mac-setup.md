@@ -48,9 +48,8 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ### 3.  configure ssh
 
 copy [ssh_config](ssh_config) to ~/.ssh/config and set the correct permissions  
-**TODO: evtl. direkter link zu dotfile mit endgültiger version?**
+copy the [ssh configuration file](https://github.com/crysis0815/dotfiles/blob/master/.ssh/config)  to ~/.ssh/config and set the correct permissions
 ```
-mv ssh_config ~/.ssh/config
 chmod 600 ~/.ssh/config
 ```
 
@@ -169,6 +168,8 @@ TODO: DNS resolver config?
 
 3. verify functioning of every app  
 **TODO: what to to for every app to verify it works correctly. what can be automazed?**
+
+4. **TODO: add relevant files to dotfiles repo and update these guides**
 
 
 - Open Calendar and enable personal Google CalDAV account (you have to manually sign in).
