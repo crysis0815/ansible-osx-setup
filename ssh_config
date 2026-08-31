@@ -1,0 +1,53 @@
+# ==============================================================================
+# Global Security Defaults (Applies to all hosts)
+# ==============================================================================
+Host *
+    # --- Authentication & Keys ---
+    # Only use explicitly specified keys (prevents key probing)
+    IdentitiesOnly yes
+    # Automatically add keys to ssh-agent
+    AddKeysToAgent yes
+    # Store passphrases in the macOS Keychain (optional, for convenience)
+    UseKeychain yes
+    # Disable password authentication; enforce SSH keys
+    PasswordAuthentication no
+    PubkeyAuthentication yes
+    KbdInteractiveAuthentication no
+
+    # --- Feature Hardening ---
+    # Prevent remote servers from abusing your local agent
+    ForwardAgent no
+    # Disable X11 forwarding
+    ForwardX11 no
+    ForwardX11Trusted no
+    # Do not pass local environment variables to the server
+    SendEnv NONE
+
+    # --- Host Verification & Connection ---
+    # Enforce strict checking of host key changes (prevents MITM attacks)
+    StrictHostKeyChecking ask
+    VerifyHostKeyDNS yes
+    # Hash hostnames and IPs in known_hosts for privacy
+    #HashKnownHosts yes
+
+    # --- Cryptographic Algorithms (Modern Ciphers & MACs) ---
+    # Restrict to strong key exchange, ciphers, and MACs. Apple+macOS shall take care of this
+    #KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512
+    #Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+    #MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+    #HostKeyAlgorithms ssh-ed25519,rsa-sha2-512,rsa-sha2-256
+
+    # --- Keepalive & Stability ---
+    # Detect dropped connections early
+    ServerAliveInterval 300
+    ServerAliveCountMax 3
+
+# ==============================================================================
+# Specific Host Configurations
+# ==============================================================================
+
+# GitHub Configuration
+Host github.com
+	HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_github
