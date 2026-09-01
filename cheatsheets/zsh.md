@@ -38,11 +38,12 @@ The best .zprofile contains only global environment variables and login-specific
 
 ## my environment
 
-Good copy of what is described in  
+is copied from  
 - https://towardsthecloud.com/blog/zsh-config#prerequisites
 - https://towardsthecloud.com/blog/zsh-aliases
+with some individual additions and changes
 
-zsh-specific dotfiles:  
+my zsh-specific dotfiles:  
 - [.zshenv](https://github.com/crysis0815/dotfiles/blob/master/.zshenv)  
 - [.zprofile](https://github.com/crysis0815/dotfiles/blob/master/.zprofile)  
 - [.zshrc](https://github.com/crysis0815/dotfiles/blob/master/.zshrc)  
