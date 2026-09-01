@@ -104,7 +104,7 @@ git clone git@github.com:crysis0815/dotfiles.git
 ## install applications
 
 homebrew can install applications from many sources. We use it to install formulae and casks from homebrew and, using mas, directly from the App Store.  
-List of all applications installed this way: [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/Brewfile)  
+List of all applications installed this way: [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/.lothar/Brewfile)  
 
 Some applications have to installed manually:
 - Brave Browser
