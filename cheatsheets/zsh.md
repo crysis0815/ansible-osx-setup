@@ -36,5 +36,11 @@ The best .zprofile contains only global environment variables and login-specific
 | ~/.zshrc    | Interactive shells | aliases, prompt, completions, setopt, keybindings, plugins |
 
 
+## my environment
+
+Good copy of what is described in  
+- https://towardsthecloud.com/blog/zsh-config#prerequisites
+- https://towardsthecloud.com/blog/zsh-aliases
+
 
 
