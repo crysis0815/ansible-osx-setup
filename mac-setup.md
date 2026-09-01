@@ -81,22 +81,46 @@ chmod 644 ~/.gitconfig
 
 ## install dotfiles
 
-authenticate in github (use HTTPS/Browser); github ssh/API access is required for repo access and homebrew remote attestation
+**prepare github access**
+github ssh/API access is required for repo access and homebrew remote attestation. first we login to github with the github cli tool  
 ```
+# use HTTPS/Browser when asked
 gh auth login
-```
 
-test if access is working
-```
+# test if it works
 ssh -T git@github.com
 ```
 
-clone dotfiles and execute script to install  
-**TODO: check permissions und funktionieren, evtl. per skript verschieben und permissions anpassen (.osx?) **
-**TODO: evtl. direkter link zu dotfile mit endgültiger version?**  
-sourcen?
+**prepare git**
 ```
-git clone git@github.com:crysis0815/dotfiles.git
+cd ~
+git init
+git remote add origin git@github.com:crysis0815/dotfiles.git
+git fetch origin
+git config --local status.showUntrackedFiles no
+
+# test checkout 
+git checkout main
+
+# git will call out errors, move these files and try again
+mkdir -p ~/.dotfiles-backup
+mv ~/.zprofile ~/.gitconfig ~/.ssh/config .dotfiles-backup/ 2>/dev/null || true
+git checkout main
+
+# once we have to set the permissions manually
+chmod +x ~/.config/.lothar/bin/git-dotfiles-fixpermissions.sh
+.config/.lothar/bin/git-dotfiles-fixpermissions.sh
+```
+
+**create git hooks**
+we also have to create the hooks to call a script to fix permissions on this machine
+```
+cat > ~/.git/hooks/post-checkout <<'EOF'
+#!/bin/zsh
+exec "$HOME/.config/.lothar/bin/git-dotfiles-fixpermissions.sh"
+EOF
+cp ~/.git/hooks/post-checkout ~/.git/hooks/post-merge
+chmod +x ~/.git/hooks/post-checkout ~/.git/hooks/post-merge
 ```
 
 
