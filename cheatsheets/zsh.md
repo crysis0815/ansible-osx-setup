@@ -46,5 +46,5 @@ zsh-specific dotfiles:
 - [.zshenv](https://github.com/crysis0815/dotfiles/blob/master/.zshenv)  
 - [.zprofile](https://github.com/crysis0815/dotfiles/blob/master/.zprofile)  
 - [.zshrc](https://github.com/crysis0815/dotfiles/blob/master/.zshrc)  
-- [aliases.zsh](https://github.com/crysis0815/dotfiles/blob/master/.config/zsh/functions/alias.zsh)  
+- [alias.zsh](https://github.com/crysis0815/dotfiles/blob/master/.config/zsh/functions/alias.zsh)  
 
