@@ -138,6 +138,7 @@ terminal braucht in datenschutz irgendeine permission (system settings)
 	dito xcode mit PW in shell und touchid  
 ausweisapp braucht rosettaapp und frägt nach PW  
 zed frägt nach passwort (irgend xattr?)  
+* weasis, utm, makemkv wollen das passwort. warum und damit hinfällig oder in VM?  (nur auf macstudio???)  
 Error: You have not agreed to the Xcode license. Please resolve this by running:  
   sudo xcodebuild -license accept  
 sudo softwareupdate --install-rosetta  
