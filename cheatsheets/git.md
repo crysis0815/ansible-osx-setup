@@ -10,3 +10,14 @@ tar -czvf repository-backup.tar.gz repository-backup.git
 
 **To restore:** Uncompress the file, navigate into the directory, and run git push --mirror
 
+
+```
+alias für git fetch && git status
+git pull
+
+#was remote geändert
+git diff --name-status HEAD origin/main
+git diff --stat HEAD origin/main
+#code-änderin
+git diff HEAD origin/main
+```
