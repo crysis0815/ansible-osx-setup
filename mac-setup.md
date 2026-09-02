@@ -1,7 +1,7 @@
-# Guide for a new Mac
+# Guide for the setup of a new Mac
 
-Mac with fresh OS, follow these steps in order:  
-
+**Prerequisite:**  
+we have created a "golden master" of dotfiles as described in [dotfiles-create-golden-master.md](dotfiles-create-golden-master.md) and have a Mac with a fresh OS installation. Then follow these steps:  
 1. [Setup Wizard](#setup-wizard)
 1. [AppleID](#appleid)
 1. [Preparations](#preparations) (xcode-cli, homebrew, ssh, git)
@@ -81,7 +81,7 @@ chmod 644 ~/.gitconfig
 
 ## install dotfiles
 
-**prepare github access**
+**prepare github access**  
 github ssh/API access is required for repo access and homebrew remote attestation. first we login to github with the github cli tool  
 ```
 # use HTTPS/Browser when asked
@@ -91,7 +91,7 @@ gh auth login
 ssh -T git@github.com
 ```
 
-**prepare git**
+**prepare git**  
 ```
 cd ~
 git init
@@ -112,7 +112,7 @@ chmod +x ~/.config/.lothar/bin/git-dotfiles-fixpermissions.sh
 .config/.lothar/bin/git-dotfiles-fixpermissions.sh
 ```
 
-**create git hooks**
+**create git hooks**  
 we also have to create the hooks to call a script to fix permissions on this machine
 ```
 cat > ~/.git/hooks/post-checkout <<'EOF'
@@ -128,7 +128,20 @@ chmod +x ~/.git/hooks/post-checkout ~/.git/hooks/post-merge
 ## install applications
 
 homebrew can install applications from many sources. We use it to install formulae and casks from homebrew and, using mas, directly from the App Store.  
-List of all applications installed this way: [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/.lothar/Brewfile)  
+We call homebrew to install all applications listed in [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/.lothar/Brewfile) 
+```
+brew bundle install --file ~/.config/.lothar/Brewfile
+```
+
+**TODO: check ob die probleme weiter bestehen bei clean install:**
+terminal braucht in datenschutz irgendeine permission (system settings)  
+	dito xcode mit PW in shell und touchid  
+ausweisapp braucht rosettaapp und frägt nach PW  
+zed frägt nach passwort (irgend xattr?)  
+Error: You have not agreed to the Xcode license. Please resolve this by running:  
+  sudo xcodebuild -license accept  
+sudo softwareupdate --install-rosetta  
+
 
 Some applications have to installed manually:
 - Brave Browser
@@ -139,19 +152,16 @@ Some applications have to installed manually:
 **TODO: describe manual steps?**  
 
 
-check if there are updates available
-```
-softwareupdate --list
-
-brew update
-brew upgrade
-```
-
-
 ## Post-processing
 
-dockutil: add/remove Apps from/to the dock  
+rm -f .dotfiles-backup
 
+Populate the dock
+```
+.config/.lothar/bin/setup_dock-helper.sh
+```
+ 
+**TODO: macos-skript bauen**
 
 aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
 
