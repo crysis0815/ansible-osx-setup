@@ -164,6 +164,8 @@ Populate the dock
  
 **TODO: macos-skript bauen**
 
+Temrinal: font auf jetbrains setzen und textgrösse 18
+
 aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
 
 Systemeinstellungen (defaults write etc)
