@@ -25,10 +25,9 @@ we create our local git repo, define an alias to use for dotfiles git operations
 ```
 cd ~
 git init --bare "$HOME/.dotfiles"
-git config --local status.showUntrackedFiles no
-
 
 alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dot config --local status.showUntrackedFiles no
 dot add ~/.gitconfig
 dot add ~/.ssh/config
 dot add ~/.zshenv
