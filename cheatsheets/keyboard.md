@@ -4,7 +4,9 @@
 **TODO: wichtigste keys hier auflisten, wechsel zwischen fenster einer app??**
 
 ## shell
-**TODO: was sind die standard nav keys in linux, wie dafür sorgen dass sie korrekt an shell durchgereicht werden (iTerm2 nutzen)**
+**TODO: was sind die standard nav keys in linux, wie dafür sorgen dass sie korrekt an shell durchgereicht werden (iTerm2 nutzen)**  
+ggfs einzelne keybindings in .zshrc setzen um auf macos das linuxverhalten nachzubilden
+
 
 By default, your shell uses Emacs-style keybindings, but you can change to Vim-like bindings if you prefer.  The following are the commands to change to Vi-bindings (and back to Emacs-bindings).
 ```
