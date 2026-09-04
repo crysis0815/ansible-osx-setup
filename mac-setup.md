@@ -94,15 +94,6 @@ ssh -T git@github.com
 
 ## install dotfiles
 
-**prepare github access**  
-github ssh/API access is required for repo access and homebrew remote attestation. first we login to github with the github cli tool  
-```
-# use HTTPS/Browser when asked
-gh auth login
-
-# test if it works
-ssh -T git@github.com
-```
 
 **prepare git**  
 ```
@@ -113,7 +104,7 @@ alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 dot config --local status.showUntrackedFiles no
 ```
 
-**TODO: rsync oder skript-call?**  
+**TODO: erster checkout siehe grok, dann: rsync oder skript-call?**  
 
 
 
