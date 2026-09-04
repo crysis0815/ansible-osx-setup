@@ -90,10 +90,13 @@ touch ~/.gitconfig
 chmod 644 ~/.gitconfig
 ```
 
-login to github and add this machines ssh key (hint: github.com, ssh, select new ssh key, title=hostname, web browser with given one-time code
+login to github and add this machines ssh key  
+**(hint:** github.com, ssh, select new ssh key, title=hostname, web browser with one-time code given in output)
 ```
 gh auth login
-gh ssh-key add ~/.ssh/id_ed25519.pub
+
+# only if key wasnt added already
+# gh ssh-key add ~/.ssh/id_ed25519.pub
 
 # test if access works (hint: yes)
 ssh -T git@github.com
