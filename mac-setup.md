@@ -98,13 +98,13 @@ ssh -T git@github.com
 **TODO: test with app installation before dotfile sync**
 
 initially clone the dotfiles repo as a non-bare repository into a temporary directory to avoid file collisions. then just once rsync the dotfiles to their proper location in $HOME and delete the temporary directory.  
-At this point, your new machine has the dotfiles in the correct locations in your home directory and is tracking their history in ~/dotfiles, which is exactly the same state that your original machine.
+At this point, your new machine has the dotfiles in the correct locations in your home directory and is tracking their history in ~/.dotfiles, which is exactly the same state that your original machine.
 ```
 cd ~
-git clone --separate-git-dir=$HOME/dotfiles git@github.com:crysis0815/dotfiles.git dotfiles-tmp
+git clone --separate-git-dir=$HOME/.dotfiles git@github.com:crysis0815/dotfiles.git .dotfiles-tmp
 
-rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-rm -rf dotfiles-tmp
+rsync --recursive --verbose --exclude '.git' .dotfiles-tmp/ $HOME/
+rm -rf .dotfiles-tmp
 ```
 
 
@@ -135,6 +135,11 @@ Some applications have to installed manually:
 - Trezor Suite (https://trezor.io/de/trezor-suite)
 
 **TODO: describe manual steps?**  
+
+**recreate the dock**
+```
+~/.config/.lothar/bin/setup_dock-helper.sh
+```
 
 
 ## Post-processing
