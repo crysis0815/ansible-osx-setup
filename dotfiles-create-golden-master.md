@@ -9,7 +9,7 @@ later on MBP shall be the lead machine
 
 
 
-## architecture for sync and drift avoidance
+### architecture for sync and drift avoidance
 
 **TODO: what to do to keep synced**  
 golden master ist welche maschine?  
@@ -18,10 +18,12 @@ da 1 person kein concurrency-problem
 cron-skript das automatisch prüft ob nicht-commitete changes vorliegen bei bereits getrackten dateien. und ob es installationen gibt die nicht im Brewfile vorhanden sind. und: check ob der lokale und remote git stand abweichen um änderungen von einer maschine zu entdecken. als nightly check um etwas luft zu lassen? falls ja: alarm **TODO: ntfy oder anderen default-alarm-mechanismus an handy/whatsapp/signal whatever**
 
 
-## Prerequisites  
+### Prerequisites  
 1. we have a minimal installation and configuration of git, gh and ssh (see [dotfiles repo](https://github.com/crysis0815/dotfiles/) )
 1. we have installed all applications (see [Brewfile](https://github.com/crysis0815/dotfiles/blob/main/.config/.lothar/Brewfile) plus description in [mac-setup](mac-setup.md))
 
+
+# Step-by-step
 
 ### 1. create repo on github
 
