@@ -1,3 +1,11 @@
+## Mac reference
+[Mac keyboard shortcuts](https://support.apple.com/en-us/102650)  
+[Mac kurzreferenz](https://www.heise.de/tipps-tricks/Mac-Kurzbefehle-Die-wichtigsten-Shortcuts-fuer-macOS-3902321.html)  
+**TODO: wichtigste keys hier auflisten, wechsel zwischen fenster einer app??**
+
+## shell
+**TODO: was sind die standard nav keys in linux, wie dafür sorgen dass sie korrekt an shell durchgereicht werden (iTerm2 nutzen)**
+
 By default, your shell uses Emacs-style keybindings, but you can change to Vim-like bindings if you prefer.  The following are the commands to change to Vi-bindings (and back to Emacs-bindings).
 ```
 BASH: set -o vi (set -o emacs)
@@ -35,8 +43,6 @@ CTRL-l to clear terminal
 CTRL-d to exit the shell  
 ```
 
-[Mac keyboard shortcuts](https://support.apple.com/en-us/102650)  
-[Mac kurzreferenz](https://www.heise.de/tipps-tricks/Mac-Kurzbefehle-Die-wichtigsten-Shortcuts-fuer-macOS-3902321.html)  
 
 [zsh reference](https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets)  
 
