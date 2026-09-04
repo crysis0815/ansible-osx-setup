@@ -1,8 +1,12 @@
 ## Mac reference
+to configure in Mac: System settings -> Keyboard -> Keyboard shortcuts  
+
 [Mac keyboard shortcuts](https://support.apple.com/en-us/102650)  
 [Mac kurzreferenz](https://www.heise.de/tipps-tricks/Mac-Kurzbefehle-Die-wichtigsten-Shortcuts-fuer-macOS-3902321.html)  
-**TODO: wichtigste keys hier auflisten, wechsel zwischen fenster einer app??**
+**TODO: wichtigste keys hier auflisten?**
 
+
+  
 ## shell
 **TODO: was sind die standard nav keys in linux, wie dafür sorgen dass sie korrekt an shell durchgereicht werden (iTerm2 nutzen)**  
 ggfs einzelne keybindings in .zshrc setzen um auf macos das linuxverhalten nachzubilden
