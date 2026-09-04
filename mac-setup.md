@@ -3,8 +3,7 @@
 **Prerequisite:**  
 we have created a "golden master" of dotfiles as described in [dotfiles-create-golden-master.md](dotfiles-create-golden-master.md) and have a Mac with a fresh OS installation. Then follow these steps:  
 1. [Setup Wizard](#setup-wizard)
-1. [AppleID](#appleid)
-1. [Preparations](#preparations) (xcode-cli, homebrew, ssh, git)
+1. [Preparations](#preparations) (xcode-cli, hostname, homebrew, ssh, git)
 1. [dotfiles](#install-dotfiles) 
 1. [Applications](#install-applications) 
 1. [Post-processing](#post-processing) 
@@ -13,30 +12,30 @@ we have created a "golden master" of dotfiles as described in [dotfiles-create-g
 
 
 ## Setup Wizard
-complete the mandatory macOS setup wizard (creating a local user account, signing into my iCloud account)
-   **TODO describe all steps**
+complete the mandatory macOS setup wizard  
+- create local user account lothar with descriptor LH (allow AppleID password reset mechanism)
+- sign in to iCloud with AppleID (necessary for software installation with homebrew/mas)
 
 
-## AppleID
-sign in to AppleID and AppStore (since `mas` can't sign in automatically)
-**TODO syncing iCloud Drive and wait for completion?**
-
-
-## Preparations
-
-
-### 1. install Xcode commandline tools
+## 1. preparations
+install Xcode commandline tools and set the hostname in  
+- set system settings->Allgemein->Name to hostname
+- replace **TODO** with hostname
 
 ```
 xcode-select --install
+sudo scutil --set HostName TODO
+typeset -x HOSTNAME="$(hostname)"
 ```
+hint: if we install in a VM, install the Guest Tools to enable copy & paste  
 
 
-### 2. install and configure homebrew
+## 2. install and configure homebrew
 
-call the official script to install homebrew in /opt/homebrew with minimal setup for now
+open a terminal and call the official script to install homebrew in /opt/homebrew with minimal setup for now
 
 ```
+cd ~
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo >> ~/.zprofile
@@ -45,28 +44,30 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ```
 
 
-### 3.  configure ssh
+## 3.  configure ssh
 
 copy the [ssh configuration file](https://github.com/crysis0815/dotfiles/blob/master/.ssh/config)  to ~/.ssh/config and set the correct permissions
 ```
+cd ~
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+touch ~/.ssh/config
+# TODO: paste config in ~/.ssh/config
 chmod 600 ~/.ssh/config
 ```
 
-create a github-specific ssh key and add it in github to allow access to repo with additional stuff to install. Replace **TODO** with the hostname of the machine we try to set up.
+create a github-specific ssh key and add it in github to allow access to repo with additional stuff to install.
 ```
-# ssh-agent active?
+# ssh-agent should be active
 eval "$(ssh-agent -s)"
 
 # create github keys and add to keychain
-ssh-keygen -t ed25519 -C "lothar@TODO" -f ~/.ssh/id_ed25519_github
+ssh-keygen -t ed25519 -C "lothar@${HOSTNAME}" -f ~/.ssh/id_ed25519_github
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519_github
-
-# copy ssh key to clipboard and with the browser save the key in github settings (GitHub → Settings → SSH and GPG keys → New SSH key → paste)
-pbcopy < ~/.ssh/id_ed25519_github.pub
 ```
 
 
-### 4. install and configure git
+## 4. install and configure git
 
 install git and gh (github-cli)
 ```
@@ -75,7 +76,19 @@ HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
 
 copy the [git configuration file](https://github.com/crysis0815/dotfiles/blob/master/.gitconfig)  to ~/.gitconfig and set the correct permissions
 ```
+cd ~
+touch ~/.gitconfig
+# TODO: paste config in ~/.gitconfig
 chmod 644 ~/.gitconfig
+```
+
+login to github and add this machines ssh key (hint: github.com, ssh, select new ssh key, title=hostname, web browser with given one-time code
+```
+gh auth login
+gh ssh-key add ~/.ssh/id_ed25519.pub
+
+# test if access works (hint: yes)
+ssh -T git@github.com
 ```
 
 
