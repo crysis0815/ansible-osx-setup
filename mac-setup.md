@@ -106,7 +106,6 @@ ssh -T git@github.com
 ## install dotfiles
 
 **ACHTUNG: erst wenn alle apps installiert sind (wie sheldon etc) ist Funktionsfähigkeit gegeben, sonst system hang**
-**TODO: test with app installation before dotfile sync**
 
 initially clone the dotfiles repo as a non-bare repository into a temporary directory to avoid file collisions. then just once rsync the dotfiles to their proper location in $HOME and delete the temporary directory.  
 At this point, your new machine has the dotfiles in the correct locations in your home directory and is tracking their history in ~/.dotfiles, which is exactly the same state that your original machine.
@@ -121,18 +120,20 @@ rm -rf .dotfiles-tmp
 
 ## install applications
 
-homebrew can install applications from many sources. We use it to install formulae and casks from homebrew and, using mas, directly from the App Store.  
-We call homebrew to install all applications listed in [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/.lothar/Brewfile) 
-**TODO: mit --verbose ausprobieren?**
+homebrew can install applications from many sources. We use it to install formulae and casks from homebrew and, using mas, directly from the App Store. check if you are logged into the App Store before starting the installation, as this is not possible in Apple Silicon VM with macOS guest.  
+
+call homebrew to install all applications listed in [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/.lothar/Brewfile)  
 ```
-brew bundle install --file ~/.config/.lothar/Brewfile
+brew bundle install --verbose --file ~/.config/.lothar/Brewfile
 ```
+
+**TODO: AppStore mas apps erst mit MBP testbar**
+formulae/casks: naps2 is a system package (.pkg), thus asks for sudo-password  
 
 **TODO: check ob die probleme weiter bestehen bei clean install:**
 terminal braucht in datenschutz irgendeine permission (system settings)  
 	dito xcode mit PW in shell und touchid  
 ausweisapp braucht rosettaapp und frägt nach PW  
-zed frägt nach passwort (irgend xattr?)  
 * weasis, utm, makemkv wollen das passwort. warum und damit hinfällig oder in VM?  (nur auf macstudio???)  
 Error: You have not agreed to the Xcode license. Please resolve this by running:  
   sudo xcodebuild -license accept  
