@@ -3,7 +3,8 @@ to configure in Mac: System settings -> Keyboard -> Keyboard shortcuts
 
 [Mac keyboard shortcuts](https://support.apple.com/en-us/102650)  
 [Mac kurzreferenz](https://www.heise.de/tipps-tricks/Mac-Kurzbefehle-Die-wichtigsten-Shortcuts-fuer-macOS-3902321.html)  
-**TODO: wichtigste keys hier auflisten?**
+**TODO: wichtigste keys hier auflisten?**  
+cmd+< um zwischen fenstern einer app zu wechseln
 
 
   
