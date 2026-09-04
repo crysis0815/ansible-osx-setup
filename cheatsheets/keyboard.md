@@ -35,10 +35,15 @@ CTRL-l to clear terminal
 CTRL-d to exit the shell  
 ```
 
-(https://gist.github.com/2KAbhishek/9c6d607e160b0439a186d4fbd1bd81df)
+[Mac keyboard shortcuts](https://support.apple.com/en-us/102650)  
+[Mac kurzreferenz](https://www.heise.de/tipps-tricks/Mac-Kurzbefehle-Die-wichtigsten-Shortcuts-fuer-macOS-3902321.html)  
+
+[zsh reference](https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets)  
 
 
-# Shell Keybindings
+
+
+# Shell Keybindings (https://gist.github.com/2KAbhishek/9c6d607e160b0439a186d4fbd1bd81df)
 
 ## Navigation 🚀
 
