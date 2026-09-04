@@ -71,7 +71,7 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519_github
 
 install git and gh (github-cli)
 ```
-HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh
+HOMEBREW_NO_VERIFY_ATTESTATIONS=1 brew install git gh rsync
 ```
 
 copy the [git configuration file](https://github.com/crysis0815/dotfiles/blob/master/.gitconfig)  to ~/.gitconfig and set the correct permissions
@@ -94,28 +94,18 @@ ssh -T git@github.com
 
 ## install dotfiles
 
-**TODO: erster checkout siehe grok, dann: rsync oder skript-call?**  
+**ACHTUNG: erst wenn alle apps installiert sind (wie sheldon etc) ist Funktionsfähigkeit gegeben, sonst system hang**
+**TODO: test with app installation before dotfile sync**
 
-Clone your repo onto the new machine as a non-bare repository. You need a non-bare repository on the new machine since you’re trying to move the actual dotfiles (that is, the snapshot of your repo) onto the new machine, not just the history.
---separate-git-dir tells Git that the history should live in $HOME/dotfiles even though the snapshot will live in dotfiles-tmp (which is just an arbitrary temporary directory that we’ll delete later once we’ve moved the dotfiles into their proper locations).
-
+initially clone the dotfiles repo as a non-bare repository into a temporary directory to avoid file collisions. then just once rsync the dotfiles to their proper location in $HOME and delete the temporary directory.  
+At this point, your new machine has the dotfiles in the correct locations in your home directory and is tracking their history in ~/dotfiles, which is exactly the same state that your original machine.
 ```
 cd ~
-#alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-#dot config --local status.showUntrackedFiles no
-
-brew install rsync
-
 git clone --separate-git-dir=$HOME/dotfiles git@github.com:crysis0815/dotfiles.git dotfiles-tmp
-```
-rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-ACHTUNG: erst wenn alle apps installiert sind (wie sheldon etc) ist Funktionsfähigkeit gegeben, sonst system hang
 
-Remove the temporary directory. Now that we’ve copied over the snapshot to the correct locations in your actual home directory, we can delete the old snapshot.
-```
+rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
 rm -rf dotfiles-tmp
 ```
-
 
 
 ## install applications
