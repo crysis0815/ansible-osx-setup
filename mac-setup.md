@@ -16,6 +16,8 @@ complete the mandatory macOS setup wizard
 - create local user account lothar with descriptor LH (allow AppleID password reset mechanism)
 - sign in to iCloud with AppleID (necessary for software installation with homebrew/mas)
 
+**hint:** if we (test)-install in a VM, install the Guest Tools to enable copy & paste  
+
 
 ## 1. preparations
 install Xcode commandline tools and set the hostname in  
@@ -24,10 +26,16 @@ install Xcode commandline tools and set the hostname in
 
 ```
 xcode-select --install
-sudo scutil --set HostName TODO
+
+# ComputerName (displayed in System Settings > General > About)
+# LocalHostName (displayed in System Settings > General > Sharing, used for Bonjour/mDNS)
+# HostName (used by standard Unix networking and the `hostname` shell command)
+sudo scutil --set ComputerName "TODO"
+sudo scutil --set LocalHostName "TODO"
+sudo scutil --set HostName "TODO"
+
 typeset -x HOSTNAME="$(hostname)"
 ```
-hint: if we install in a VM, install the Guest Tools to enable copy & paste  
 
 
 ## 2. install and configure homebrew
