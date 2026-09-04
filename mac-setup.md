@@ -148,64 +148,35 @@ Some applications have to installed manually:
 
 **TODO: describe manual steps?**  
 
-**recreate the dock**
-```
-~/.config/.lothar/bin/setup_dock-helper.sh
-```
 
 
 ## Post-processing
 
-rm -f .dotfiles-backup
-
-Populate the dock
+### recreate the dock
 ```
-.config/.lothar/bin/setup_dock-helper.sh
+~/.config/.lothar/bin/setup_dock-helper.sh
 ```
  
-**TODO: macos-skript bauen**
+### configure system && configure applications
 
-Temrinal: font auf jetbrains setzen und textgrösse 18
+script system settings and app configuration
 
-aber: viele moderne Settings (Datenschutz, Notifications) gehen nicht zuverlässig per CLI und brauchen ein signiertes Configuration Profile oder MDM. Ggfs. Apple Configurator for mac oder iMazing Profile Editor oder Manuell (XML/plist)
+**TODO: create cheatsheet for how to collect defaults etc**
 
-Systemeinstellungen (defaults write etc)
-shell script used in dotfiles repositories to automate the configuration of macOS system preferences and defaults  
-```
-home/.osx, chmod +x ~/.osx
-```
-https://github.com/olafhartong/osx-defaults/blob/master/.osx  
-https://github.com/alberti42/macOS-config-manager (defaults backup/restore)  
-
-systemeinstellungen per CLI:
-* defaults write – die meisten App- und System-Prefs
-* systemsetup – Host, Timezone, Remote Login (braucht oft sudo)
-* osascript – System Settings, die kein defaults-Key haben
-* pmset, networksetup, scutil – Power, Netzwerk, Hostname
-* https://github.com/kevinSuttle/macOS-Defaults/blob/master/REFERENCE.md
-* launchctl, mdutil for spotlight?, systemsetup, tmutil
-
-TODO: DNS resolver config?
-
-
-## Finishing steps
-
-1. start syncing
-
-2. configure apps
+configure apps
 - open Photos and make sure iCloud sync options are correct TODO
 - open Music, make sure computer is authorized, and set Library sync options TODO
 - **TODO document manual steps to configure every apps**
 
-3. verify functioning of every app  
+verify functioning of every app  
 **TODO: what to to for every app to verify it works correctly. what can be automazed?**
 
-4. **TODO: add relevant files to dotfiles repo and update these guides**
 
-* sync across machines via git-dotfiles-repo for: public keys?
-pen Calendar and enable personal Google CalDAV account (you have to manually sign in).
+## Finishing steps
+
+- sync iCloud
+- contacts, notes, music, fotos synced?
+- open Calendar and enable personal Google CalDAV account (you have to manually sign in).
 - Configure Time Machine backup drive
 
-setup sync/backup wesentlicher dateien zwischen den rechnern, git repo?
-
-**TODO tailscale/netbird?, mullvad VPN?**
+**TODO: monitor, backup, what else**
