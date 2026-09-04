@@ -94,17 +94,27 @@ ssh -T git@github.com
 
 ## install dotfiles
 
+**TODO: erster checkout siehe grok, dann: rsync oder skript-call?**  
 
-**prepare git**  
+Clone your repo onto the new machine as a non-bare repository. You need a non-bare repository on the new machine since you’re trying to move the actual dotfiles (that is, the snapshot of your repo) onto the new machine, not just the history.
+--separate-git-dir tells Git that the history should live in $HOME/dotfiles even though the snapshot will live in dotfiles-tmp (which is just an arbitrary temporary directory that we’ll delete later once we’ve moved the dotfiles into their proper locations).
+
 ```
 cd ~
-git clone --bare git@github.com:crysis0815/dotfiles.git "$HOME/.dotfiles"
+#alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+#dot config --local status.showUntrackedFiles no
 
-alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-dot config --local status.showUntrackedFiles no
+brew install rsync
+
+git clone --separate-git-dir=$HOME/dotfiles git@github.com:crysis0815/dotfiles.git dotfiles-tmp
 ```
+rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
+ACHTUNG: erst wenn alle apps installiert sind (wie sheldon etc) ist Funktionsfähigkeit gegeben, sonst system hang
 
-**TODO: erster checkout siehe grok, dann: rsync oder skript-call?**  
+Remove the temporary directory. Now that we’ve copied over the snapshot to the correct locations in your actual home directory, we can delete the old snapshot.
+```
+rm -rf dotfiles-tmp
+```
 
 
 
@@ -112,6 +122,7 @@ dot config --local status.showUntrackedFiles no
 
 homebrew can install applications from many sources. We use it to install formulae and casks from homebrew and, using mas, directly from the App Store.  
 We call homebrew to install all applications listed in [Brewfile](https://github.com/crysis0815/dotfiles/blob/master/.config/.lothar/Brewfile) 
+**TODO: mit --verbose ausprobieren?**
 ```
 brew bundle install --file ~/.config/.lothar/Brewfile
 ```
