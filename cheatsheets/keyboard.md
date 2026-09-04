@@ -1,5 +1,5 @@
 By default, your shell uses Emacs-style keybindings, but you can change to Vim-like bindings if you prefer.  The following are the commands to change to Vi-bindings (and back to Emacs-bindings).
-``
+```
 BASH: set -o vi (set -o emacs)
 ZSH : bindkey -v (bindkey -e)
 FISH : fish_vi_key_bindings (fish_default_key_bindings)
@@ -34,6 +34,8 @@ CTRL-n (j) move to next command in history
 CTRL-l to clear terminal  
 CTRL-d to exit the shell  
 ```
+
+(https://gist.github.com/2KAbhishek/9c6d607e160b0439a186d4fbd1bd81df)
 
 
 # Shell Keybindings
@@ -92,3 +94,4 @@ CTRL-d to exit the shell
 | <kbd>Ctrl</kbd> + <kbd>x,v</kbd> | vi mode (zsh) |
 | `bindkey -e`                     | Emacs mode    |
 | `set -o vi` / `bindkey -v`       | Vi mode       |
+
